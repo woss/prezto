@@ -16,14 +16,17 @@ fi
 
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
 
 autoload -Uz promptinit
 promptinit
 prompt garrett
 
-export GOPATH="$HOME/go"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 export ANDROID_HOME="/usr/local/opt/android-sdk"
+
 autoload -U add-zsh-hook
 load-nvmrc() {
 if [[ -f .nvmrc && -r .nvmrc ]]; then
@@ -31,3 +34,4 @@ if [[ -f .nvmrc && -r .nvmrc ]]; then
 fi
 }
 add-zsh-hook chpwd load-nvmrc
+

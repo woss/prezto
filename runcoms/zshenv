@@ -14,3 +14,4 @@ if [[ -f .nvmrc && -r .nvmrc ]]; then
   nvm use
 fi
 }
+export GOPATH="$HOME/go"
