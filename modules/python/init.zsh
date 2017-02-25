@@ -5,7 +5,7 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #   Sebastian Wiesner <lunaryorn@googlemail.com>
 #
-
+export PIP_DOWNLOAD_CACHE=$HOME/.pip-download-cache
 # Load manually installed pyenv into the shell session.
 if [[ -s "$HOME/.pyenv/bin/pyenv" ]]; then
   path=("$HOME/.pyenv/bin" $path)

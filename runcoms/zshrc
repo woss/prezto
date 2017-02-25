@@ -35,3 +35,8 @@ fi
 }
 add-zsh-hook chpwd load-nvmrc
 
+export PATH="/Users/danijel/anaconda3/bin:$PATH"
+export PATH="$PATH:`yarn global bin`"
+
+
+. /Users/danijel/torch/install/bin/torch-activate
