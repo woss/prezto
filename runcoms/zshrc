@@ -35,8 +35,14 @@ fi
 }
 add-zsh-hook chpwd load-nvmrc
 
-export PATH="/Users/danijel/anaconda3/bin:$PATH"
+export PATH=“~/anaconda3/bin:$PATH"
 export PATH="$PATH:`yarn global bin`"
 
 
-. /Users/danijel/torch/install/bin/torch-activate
+. ~/torch/install/bin/torch-activate
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f ‘~/google-cloud-sdk/path.zsh.inc' ]; then source ‘~/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f ‘~/google-cloud-sdk/completion.zsh.inc' ]; then source ‘~/google-cloud-sdk/completion.zsh.inc'; fi
