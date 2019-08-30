@@ -11,52 +11,36 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
-
-autoload -Uz promptinit
-promptinit
-prompt garrett
+# added by Anaconda3 2019.03 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/woss/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/Users/woss/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/woss/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/Users/woss/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export ANDROID_HOME=/usr/local/Caskroom/android-sdk/25.2.3/
-export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PYTHON=/usr/bin/python2.7
 
-autoload -U add-zsh-hook
-load-nvmrc() {
-if [[ -f .nvmrc && -r .nvmrc ]]; then
-  nvm use
-fi
-}
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/woss/Projects/sensio.photo/sensio-faas/api/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/woss/Projects/sensio.photo/sensio-faas/api/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/woss/Projects/sensio.photo/sensio-faas/api/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/woss/Projects/sensio.photo/sensio-faas/api/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/woss/Projects/sensio.photo/sensio-faas/api/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/woss/Projects/sensio.photo/sensio-faas/api/node_modules/tabtab/.completions/slss.zsh
+export VOLTA_HOME="$HOME/.volta"
+[ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
 
-load-conda() {
-if [[ -f .virtualenv && -r .virtualenv ]]; then
-    echo "loading virtual env"
-    source activate $(cat .virtualenv)
-fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-add-zsh-hook chpwd load-conda
-
-export PATH="$HOME/anaconda3/bin:$PATH"
-export PATH="$PATH:/usr/local/Caskroom/android-sdk/25.2.3/emulator:/usr/local/Caskroom/android-sdk/25.2.3/tools/bin"
-export PATH="$PATH:`yarn global bin`"
-export LDFLAGS="/usr/local/opt/libffi/lib"
-export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-source <(kubectl completion zsh)
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-alias kctl="kubectl"
+export PATH="$VOLTA_HOME/bin:$PATH"
